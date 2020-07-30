@@ -1,7 +1,7 @@
 <div>
     <!-- <form (ngSubmit)="onSubmit()" [formGroup]="form"> -->
 
-    <ng-container *ngFor="let item of formostForm.controls | controlKeyValue">
+    <ng-container *ngFor="let item of formostForm.controls | keyvalue: originalOrder">
         <div class="columns">
             <div class="column is-12"> 
                 <formost-form-group *ngIf="item.value.getControlType()=='group'" 

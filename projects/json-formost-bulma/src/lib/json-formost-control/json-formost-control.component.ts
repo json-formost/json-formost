@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '../../../../json-formost-core/src/lib/controls/form-group';
-import { FormControl } from '../../../../json-formost-core/src/lib/controls/form-control';
+import { FormGroup, FormControl } from '../../../../json-formost-core/src/public-api';
 
 @Component({
   selector: 'formost-form-control',

@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '../../../../json-formost-core/src/lib/controls/form-group';
-import { FormArray } from '../../../../json-formost-core/src/lib/controls/form-array';
-import { FormostJsonSchema7 } from '../../../../json-formost-core/src/lib/formost-json-schema-7.interface';
-import { SchemaConverterService } from '../../../../json-formost-core/src/lib/formost-schema-converter.service';
+import { FormGroup, FormArray, FormostJsonSchema7, SchemaConverterService } from '../../../../json-formost-core/src/public-api';
 
 @Component({
   selector: 'formost-form-array',

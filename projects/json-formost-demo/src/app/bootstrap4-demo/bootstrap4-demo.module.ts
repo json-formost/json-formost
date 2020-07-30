@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JsonFormostBulmaModule } from '../../../../json-formost-bulma/src/lib/json-formost-bulma.module';
-import { BulmaDemoComponent } from '../bulma-demo/bulma-demo.component';
+import { JsonFormostBootstrap4Module } from '../../../../json-formost-bootstrap4/src/public-api';
+import { Bootstrap4DemoComponent } from './bootstrap4-demo.component';
 
 @NgModule({
     declarations: [
-        BulmaDemoComponent, 
+        Bootstrap4DemoComponent, 
     ],
     imports: [
         CommonModule, 
         ReactiveFormsModule,
-        JsonFormostBulmaModule
+        JsonFormostBootstrap4Module,
     ],
     exports: [
     ]
 })
-export class BulmaDemoModule { }
+export class Bootstrap4DemoModule { }

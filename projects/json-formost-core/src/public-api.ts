@@ -2,6 +2,7 @@
  * Public API Surface of json-formost-core
  */
 
+export * from './lib/util';
 export * from './lib/formost-schema-converter.service';
 export * from './lib/formost-json-schema-7.interface';
 export * from './lib/formost-abstract-control.interface';

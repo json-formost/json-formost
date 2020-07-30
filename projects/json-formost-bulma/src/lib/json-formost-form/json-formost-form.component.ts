@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, Validators, ValidationErrors, AbstractControl } from "@angular/forms";
-import { FormGroup } from '../../../../json-formost-core/src/lib/controls/form-group';
-import { FormostJsonSchema7 } from '../../../../json-formost-core/src/lib/formost-json-schema-7.interface';
-import { SchemaConverterService } from '../../../../json-formost-core/src/lib/formost-schema-converter.service';
+import { FormGroup, FormostJsonSchema7, SchemaConverterService, keyValueSorters } from '../../../../json-formost-core/src/public-api';
 
 @Component({
   selector: 'formost-form',
@@ -26,6 +24,7 @@ export class JsonFormostFormComponent implements OnInit, ControlValueAccessor, V
   @Input() schema: string | FormostJsonSchema7;
 
   public formostForm: FormGroup;
+  public originalOrder = keyValueSorters.originalOrder;s
 
   // form: FormGroup;
   payLoad = '';
