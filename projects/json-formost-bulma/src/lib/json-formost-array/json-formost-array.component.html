@@ -1,0 +1,66 @@
+<div class="columns" [formGroup]="form">
+    <div class="column is-3">
+        <label class="label">
+            {{ array.title || array.name }}
+        </label>
+        <p *ngIf="array.description" class="help">{{ array.description }}</p>
+    </div>
+    <div class="column">
+
+        <ng-container [formArrayName]="array.name">
+            <!-- <ng-container *ngFor="let ctl of form.get(array.name).controls; let i=index">
+                <ng-container [formGroupName]="i">
+                </ng-container>
+            </ng-container> -->
+
+            <div class="columns" *ngFor="let ctl of array.controls; index as i">
+
+                <div class="column" *ngIf="ctl.getControlType()=='group'" [formGroupName]="i">
+                    <formost-form-group [group]="array.controls[i]" [form]="form" [fromArray]="true">
+                    </formost-form-group>
+                </div>
+
+                <div class="column" *ngIf="ctl.getControlType()=='array'" [formGroupName]="i">
+                    <formost-form-array [array]="array.controls[i]" [form]="form" [fromArray]="true">
+                    </formost-form-array>
+                </div>
+
+                <div class="column" *ngIf="ctl.getControlType()=='control'">
+                    <formost-form-control [control]="array.controls[i]" [form]="form" [fromArray]="true">
+                    </formost-form-control>
+                </div>
+
+                <div class="column is-narrow">
+                    <button class="button is-link is-small" (click)="removeItem(i)">
+                        <span class="icon">
+                            <i class="fas fa-minus"></i>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+
+        </ng-container>
+
+        <div class="field is-grouped" *ngIf="array.itemTypes.length > 1">
+            <p class="control" *ngFor="let typ of array.itemTypes; let i=index">
+                <button class="button is-link is-small" (click)="addItem(typ)">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span>{{ typ.name || array.name + ' type #' + (i+1) }}</span>
+                </button>
+            </p>
+        </div>
+        <div class="field" *ngIf="array.itemTypes.length == 1">
+            <p class="control">
+                <button class="button is-link is-small" (click)="addItem(array.itemTypes[0])">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                </button>
+            </p>
+        </div>
+
+    </div>
+</div>

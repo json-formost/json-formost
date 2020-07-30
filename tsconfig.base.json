@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "json-formost-core": [
+        "dist/json-formost-core/json-formost-core",
+        "dist/json-formost-core"
+      ],
+      "json-formost-bulma": [
+        "dist/json-formost-bulma/json-formost-bulma",
+        "dist/json-formost-bulma"
+      ],
+      "json-formost-bootstrap4": [
+        "dist/json-formost-bootstrap4/json-formost-bootstrap4",
+        "dist/json-formost-bootstrap4"
+      ]
+    }
+  }
+}

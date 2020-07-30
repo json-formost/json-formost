@@ -1,0 +1,25 @@
+<div class="columns">
+    <div class="column is-3">
+        <label class="label">
+            {{ group.title || group.name }}
+        </label>
+        <p *ngIf="group.description" class="help">{{ group.description }}</p>
+    </div>
+    <div class="column">
+        <ng-container *ngFor="let item of group.controls | controlKeyValue">
+            <div class="columns">
+                <div class="column is-12">
+                    <formost-form-group *ngIf="item.value.getControlType()=='group'" [group]="item.value"
+                        [form]="group"></formost-form-group>
+                    <!-- <formost-form-array *ngIf="item.value.getControlType()=='array'" 
+                            [array]="item.value" 
+                            [form]="group">
+                        </formost-form-array> -->
+                    <formost-form-control *ngIf="item.value.getControlType()=='control'" [control]="item.value"
+                        [form]="group">
+                    </formost-form-control>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

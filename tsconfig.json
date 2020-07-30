@@ -1,0 +1,35 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/json-formost-core/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/json-formost-core/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/json-formost-demo/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/json-formost-demo/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/json-formost-bulma/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/json-formost-bulma/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/json-formost-bootstrap4/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/json-formost-bootstrap4/tsconfig.spec.json"
+    }
+]
+}
