@@ -1,13 +1,13 @@
 {
   "name": "@json-formost/core",
-  "description": "A library to support each specific JSON Formost implementations. Do not install directly.",
+  "description": "A library to support each specific JSON Formost implementation. Do not install directly.",
   "author": {
     "email": "dlrm72@gmail.com",
     "name": "Daniel McFarland",
     "url": "https://github.com/witttness"
   },
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.1a",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
     "@angular/core": "^10.0.5"

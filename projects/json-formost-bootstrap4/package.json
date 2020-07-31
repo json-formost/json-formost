@@ -6,6 +6,7 @@
     "@angular/core": "^10.0.5"
   },
   "dependencies": {
+    "@json-formost/core": "0.0.1-a",
     "tslib": "^2.0.0"
   }
 }
