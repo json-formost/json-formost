@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '../../../../json-formost-core/src/public-api';
 
 @Component({
   selector: 'formost-form-control',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./json-formost-control.component.css']
 })
 export class JsonFormostControlComponent implements OnInit {
+  @Input() control: FormControl;
+  @Input() form: FormGroup;
+  @Input() fromArray = false;
 
   constructor() { }
 

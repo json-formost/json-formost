@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, keyValueSorters } from '../../../../json-formost-core/src/public-api';
 
 @Component({
   selector: 'formost-form-group',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./json-formost-group.component.css']
 })
 export class JsonFormostGroupComponent implements OnInit {
+  @Input() form: FormGroup;
+  @Input() group: FormGroup;
+  @Input() fromArray = false;
+
+  public originalOrder = keyValueSorters.originalOrder;
 
   constructor() { }
 
