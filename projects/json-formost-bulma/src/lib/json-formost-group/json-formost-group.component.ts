@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, keyValueSorters } from '../../../../json-formost-core/src/public-api';
+// import { FormGroup, keyValueSorters } from '../../../../json-formost-core/src/public-api';
+import { FormGroup, keyValueSorters } from 'json-formost-core';
 
 @Component({
   selector: 'formost-form-group',

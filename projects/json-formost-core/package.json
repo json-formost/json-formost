@@ -1,5 +1,11 @@
 {
-  "name": "json-formost-core",
+  "name": "@json-formost/json-formost-core",
+  "description": "a library to support specific json-formost implementations",
+  "author": {
+    "email": "dlrm72@gmail.com",
+    "name": "Daniel McFarland",
+    "url": "https://github.com/json-formost"
+  },
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.0.5",

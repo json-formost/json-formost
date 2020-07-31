@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, Validators, ValidationErrors, AbstractControl } from "@angular/forms";
-import { FormGroup, FormostJsonSchema7, SchemaConverterService, keyValueSorters } from '../../../../json-formost-core/src/public-api';
+// import { FormGroup, FormostJsonSchema7, SchemaConverterService, keyValueSorters } from '../../../../json-formost-core/src/public-api';
+import { FormGroup, FormostJsonSchema7, SchemaConverterService, keyValueSorters } from 'json-formost-core';
 
 @Component({
   selector: 'formost-form',
