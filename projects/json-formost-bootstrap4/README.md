@@ -1,24 +1,80 @@
-# JsonFormostBootstrap4
+# JSON Formost - Bootstrap4
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+JSON Formost for Bootstrap4 is a set of Angular components that convert a JSON Schema (v7) into an Angular Reactive Form.
 
-## Code scaffolding
+*This tool is functional but **unfinished** and subject to significant refactoring with breaking changes as of July 31, 2020.*
 
-Run `ng generate component component-name --project json-formost-bootstrap4` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project json-formost-bootstrap4`.
-> Note: Don't forget to add `--project json-formost-bootstrap4` or else it will be added to the default project in your `angular.json` file. 
+## Example Angular Html
+```
+<form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+    <formost-form [schema]="schemaString" formControlName="subform"></formost-form>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+```
 
-## Build
+## Example Angular TypeScript
+```
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
-Run `ng build json-formost-bootstrap4` to build the project. The build artifacts will be stored in the `dist/` directory.
+@Component({
+  selector: 'app-bootstrap4-demo',
+  templateUrl: './bootstrap4-demo.component.html',
+  styleUrls: ['./bootstrap4-demo.component.scss']
+})
+export class Bootstrap4DemoComponent implements OnInit {
+  demoForm: FormGroup;
 
-## Publishing
+  constructor(private fb: FormBuilder) { }
 
-After building your library with `ng build json-formost-bootstrap4`, go to the dist folder `cd dist/json-formost-bootstrap4` and run `npm publish`.
+  ngOnInit(): void {
+    this.loadDemoForm();
+  }
 
-## Running unit tests
+  loadDemoForm() {
 
-Run `ng test json-formost-bootstrap4` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    this.demoForm = this.fb.group({
+      subform: [null],
+    });
 
-## Further help
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  onSubmit() {
+    console.info('demoForm Data', this.demoForm.value);
+  }
+
+  schemaString = `{
+    "title": "People",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Please enter your name"
+      },
+      "vegetarian": {
+        "type": "boolean",
+        "title": "Are you a vegetarian?"
+      },
+      "birthDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "nationality": {
+        "type": "string",
+        "enum": [
+          "DE",
+          "IT",
+          "JP",
+          "US",
+          "RU",
+          "Other"
+        ]
+      },
+    },
+    "required": [
+      "nationality"
+    ]
+  }`;
+}
+```

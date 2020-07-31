@@ -1,5 +1,12 @@
 {
-  "name": "json-formost-bootstrap4",
+  "name": "@json-formost/bootstrap4",
+  "description": "A set of Angular components that convert a JSON Schema (v7) into an Angular Reactive Form.",
+  "author": {
+    "email": "dlrm72@gmail.com",
+    "name": "Daniel McFarland",
+    "url": "https://github.com/witttness"
+  },
+  "license": "MIT",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
