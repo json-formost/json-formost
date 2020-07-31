@@ -1,37 +1,79 @@
-<!-- https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
     integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
-<div class="section columns">
-    <!-- <app-nav class="column is-2"></app-nav> -->
-    <main class="column is-8 is-offset-2">
-        <div class="content-container">
-            <div class="columns">
-                <div class="column">
+<div>
+    <header>
+        <nav class="navbar has-background-dark is-dark" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <!-- <a class="navbar-item" routerLink="/home">
+                    <i class="fab js-logo fa-angular fa-2x" aria-hidden="true"></i>
+                </a> -->
+                <a class="navbar-item nav-home" router-link="/">
+                    JSON Formost
+                </a>
+            </div>
+            <div class="navbar-menu has-background-light is-light">
+                <span class="navbar-item is-active" href="/bootstrap4">
+                    Bulma
+                </span>
+                <a class="navbar-item" href="/bootstrap4">
+                    Bootstrap 4
+                </a>
+            </div>
+    
+        </nav>
+    </header>
+    <!-- <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <strong>JSON Formost Bulma Demo</strong>
+            </a>
+        </div>
 
-                    <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
-                        <div class="card item-editor">
-                            <header class="card-header">
-                                <p class="card-header-title is-size-2">
-                                    Bulma Demo Form
-                                </p>
-                            </header>
-                            <div class="card-content">
-                                <div class="content">
-                                    <formost-form [schema]="schemaString" formControlName="content"></formost-form>
+        <div class="navbar-menu">
+            <a class="navbar-item" href="/bootstrap4">
+                Bootstrap 4
+            </a>
+        </div>
+
+    </nav>
+ -->
+    <div class="section columns">
+        <!-- <app-nav class="column is-2"></app-nav> -->
+
+        <main class="column is-8 is-offset-2">
+            <div class="content-container">
+                <div class="columns">
+                    <div class="column">
+
+                        <p>
+                            <a href="https://bulma.io">Visit Bulma.io</a>
+                        </p>
+
+                        <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+                            <div class="card item-editor">
+                                <header class="card-header">
+                                    <p class="card-header-title is-size-2">
+                                        Bulma Demo Form
+                                    </p>
+                                </header>
+                                <div class="card-content">
+                                    <div class="content">
+                                        <formost-form [schema]="schemaString" formControlName="content"></formost-form>
+                                    </div>
                                 </div>
+                                <footer class="card-footer">
+                                    <a (click)="handleSave($event)" href="#" class="card-footer-item">Save</a>
+                                    <a (click)="handleReset($event)" href="#" class="card-footer-item">Reset</a>
+                                </footer>
                             </div>
-                            <footer class="card-footer">
-                                <a (click)="handleSave($event)" href="#" class="card-footer-item">Save</a>
-                                <a (click)="handleReset($event)" href="#" class="card-footer-item">Reset</a>
-                            </footer>
-                        </div>
-                    </form>
+                        </form>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 </div>
