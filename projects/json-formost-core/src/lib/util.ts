@@ -9,21 +9,6 @@ function populateInterfaceProperties(target: object, source: object, properties:
     }
 }
 
-// // Preserve original property order
-// function originalOrder(a: KeyValue<number, string>, b: KeyValue<number, string>) {
-//     return 0;
-// }
-
-// // Order by ascending property value
-// function valueAscOrder(a: KeyValue<number, string>, b: KeyValue<number, string>) {
-//     return a.value.localeCompare(b.value);
-// }
-
-// // Order by descending property key
-// function keyDescOrder(a: KeyValue<number, string>, b: KeyValue<number, string>) {
-//     return a.key > b.key ? -1 : (b.key > a.key ? 1 : 0);
-// }
-
 const keyValueSorters = {
     // Preserve original property order
     originalOrder: (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {

@@ -59,8 +59,8 @@ export class SchemaConverterService {
   }
 
   private getFormControl(obj: FormostJsonSchema7, refId: string): FormControl {
-    const formCtl = new FormControl();
-    formCtl.populate(obj);
+    const formCtl = new FormControl(obj);
+    // formCtl.populate(obj);
     if (refId) { formCtl.refid = refId; }
     return formCtl;
   }

@@ -44,24 +44,50 @@
                             <a href="https://bulma.io">Visit Bulma.io</a>
                         </p>
 
-                        <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
-                            <div class="card item-editor">
-                                <header class="card-header">
-                                    <p class="card-header-title is-size-2">
-                                        Bulma Demo Form
-                                    </p>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        <formost-form [schema]="schemaString" formControlName="content"></formost-form>
-                                    </div>
+                        <!-- <form [formGroup]="demoForm" (ngSubmit)="onSubmit()"> -->
+                        <div class="card item-editor">
+                            <header class="card-header">
+                                <p class="card-header-title is-size-2">
+                                    Bulma Demo Form
+                                </p>
+                            </header>
+                            <div class="card-content">
+                                <div class="tabs">
+                                    <ul>
+                                        <li [class.is-active]="tab=='form'"><a (click)="showTab('form')">Form</a></li>
+                                        <li [class.is-active]="tab=='schema'"><a (click)="showTab('schema')">Schema</a>
+                                        </li>
+                                        <li [class.is-active]="tab=='data'"><a (click)="showTab('data')">Data</a></li>
+                                    </ul>
                                 </div>
-                                <footer class="card-footer">
-                                    <a (click)="handleSave($event)" href="#" class="card-footer-item">Save</a>
-                                    <a (click)="handleReset($event)" href="#" class="card-footer-item">Reset</a>
-                                </footer>
+                                <div class="content" *ngIf="tab=='form'">
+                                    <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+                                        <formost-form [schema]="schemaObject" formControlName="content"></formost-form>
+
+                                        <div class="columns">
+                                            <div class="column is-12">
+                                                <div class="field is-grouped">
+                                                    <div class="control">
+                                                        <button type="submit" class="button is-link" [disabled]="!demoForm.valid">Submit</button>
+                                                    </div>
+                                                    <div class="control">
+                                                        <button type="reset"
+                                                            class="button is-link is-light">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="content" *ngIf="tab=='schema'">
+                                    <pre><code>{{ schemaObject | json }}</code></pre>
+                                </div>
+                                <div class="content" *ngIf="tab=='data'">
+                                    <pre><code>{{ demoForm.value | json }}</code></pre>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                        <!-- </form> -->
 
                     </div>
                 </div>

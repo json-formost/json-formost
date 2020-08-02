@@ -1,14 +1,14 @@
-import { FormControl as NgFormControl, ValidatorFn, AbstractControlOptions, AsyncValidatorFn } from '@angular/forms';
+import { FormControl as NgFormControl, Validators, ValidatorFn, AbstractControlOptions, AsyncValidatorFn } from '@angular/forms';
 import { FormostAbstractControl } from '../formost-abstract-control.interface';
 import { populateInterfaceProperties } from '../util';
 
 export class FormControl<T = any, E extends object = any> extends NgFormControl implements FormostAbstractControl {
     readonly value: T;
 
-    constructor(formState?: any,
-        validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions,
-        asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]) {
-        super(formState, validatorOrOpts, asyncValidator);
+    constructor(source, formState?: any) {
+        super(formState, null, null);
+        populateInterfaceProperties(this, source, ['type', 'required', 'enum', 'minLength', 'maxLength', 'pattern', 'format', 'contentEncoding', 'contentMediaType', 'multipleOf', 'minimum', 'exclusiveMinimum', 'maximum', 'exclusiveMaximum']);
+        this.setValidators(this.getValidators());
     }
 
     // from interface
@@ -46,22 +46,22 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
     enum?: any[];
 
     // type: string
-    minLength?: number;
-    maxLength?: number;
-    pattern?: string;
+    minLength?: number = null;
+    maxLength?: number = null;
+    pattern?: string = null;
     format?: 'date-time' | 'time' | 'date' | 'email' | 'idn-email' |
         'hostname' | 'idn-hostname' | 'ipv4' | 'ipv6' | 'uri' | 'uri-reference' |
         'iri' | 'iri-reference' | 'uri-template' | 'json-pointer' | 'relative-json-pointer' |
         'regex';
     contentEncoding?: '7bit' | '8bit' | 'binary' | 'quoted-printable' | 'base64';
-    contentMediaType?: string;
+    contentMediaType?: string = null;
 
     // type: number
-    multipleOf?: number;
-    minimum?: number;
-    exclusiveMinimum?: number;
-    maximum?: number;
-    exclusiveMaximum?: number;
+    multipleOf?: number = null;
+    minimum?: number = null;
+    exclusiveMinimum?: number = null;
+    maximum?: number = null;
+    exclusiveMaximum?: number = null;
 
     populate(source: object) {
         populateInterfaceProperties(this, source, ['type', 'required', 'enum', 'minLength', 'maxLength', 'pattern', 'format', 'contentEncoding', 'contentMediaType', 'multipleOf', 'minimum', 'exclusiveMinimum', 'maximum', 'exclusiveMaximum']);
@@ -69,5 +69,33 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
 
     getControlType(): 'control' | 'group' | 'array' {
         return 'control';
+    }
+
+    getValidators() {
+        const validators = [];
+        if (this.required)
+            validators.push(Validators.required);
+
+        if (this.type == 'string') {
+            if (this.minLength !== null)
+                validators.push(Validators.minLength(this.minLength));
+            if (this.maxLength !== null)
+                validators.push(Validators.minLength(this.maxLength));
+            if (this.pattern !== null)
+                validators.push(Validators.pattern(this.pattern));
+            if (this.format == "email")
+                validators.push(Validators.email);
+        }
+
+        if (this.type == 'number') {
+            if (this.minimum !== null)
+                validators.push(Validators.min(this.minimum));
+            if (this.maximum !== null)
+                validators.push(Validators.max(this.maximum));
+        }
+
+        console.info(name, validators);
+
+        return validators;
     }
 }  

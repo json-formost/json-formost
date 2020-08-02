@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class BulmaDemoComponent implements OnInit {
   demoForm: FormGroup;
+  tab = "form";
 
   constructor(private fb: FormBuilder) { }
 
@@ -29,7 +30,11 @@ export class BulmaDemoComponent implements OnInit {
       createdBy: [itemData.createdBy],
       createdAt: [itemData.createdAt],
     });
-    console.info('loadItemForm::itemForm...', this.demoForm);
+    // console.info('loadItemForm::itemForm...', this.demoForm);
+  }
+
+  showTab(tab) {
+    this.tab = tab;
   }
 
   handleSave(ev) {
@@ -46,7 +51,7 @@ export class BulmaDemoComponent implements OnInit {
     console.info('DATA', this.demoForm.value);
   }
 
-  schemaString = `{
+  schemaObject = {
     "title": "People",
     "type": "object",
     "properties": {
@@ -129,5 +134,5 @@ export class BulmaDemoComponent implements OnInit {
       "occupation",
       "nationality"
     ]
-  }`;
+  };
 }

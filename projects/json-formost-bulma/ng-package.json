@@ -2,6 +2,10 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/json-formost-bulma",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@json-formost/core": "../../dist/json-formost-core",
+      "json-formost-core": "../../dist/json-formost-core"
+    }
   }
 }
