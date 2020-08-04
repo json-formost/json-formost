@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class Bootstrap4DemoComponent implements OnInit {
   demoForm: FormGroup;
+  tab = 'form';
 
   constructor(private fb: FormBuilder) { }
 
@@ -29,7 +30,12 @@ export class Bootstrap4DemoComponent implements OnInit {
       createdBy: [itemData.createdBy],
       createdAt: [itemData.createdAt],
     });
-    console.info('loadItemForm::itemForm...', this.demoForm);
+    // console.info('loadItemForm::itemForm...', this.demoForm);
+  }
+
+  showTab(e, tab) {
+    e.preventDefault();
+    this.tab = tab;
   }
 
   handleSave(ev) {
@@ -46,7 +52,7 @@ export class Bootstrap4DemoComponent implements OnInit {
     console.info('DATA', this.demoForm.value);
   }
 
-  schemaString = `{
+  schema = {
     "title": "People",
     "type": "object",
     "properties": {
@@ -129,5 +135,5 @@ export class Bootstrap4DemoComponent implements OnInit {
       "occupation",
       "nationality"
     ]
-  }`;
+  };
 }
