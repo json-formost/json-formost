@@ -9,11 +9,19 @@ import { JsonFormostFormComponent } from './json-formost-form/json-formost-form.
 
 
 @NgModule({
-  declarations: [JsonFormostArrayComponent, JsonFormostGroupComponent, JsonFormostControlComponent, JsonFormostFormComponent],
+  declarations: [
+    JsonFormostArrayComponent, 
+    JsonFormostGroupComponent, 
+    JsonFormostControlComponent, 
+    JsonFormostFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
   ],
-  exports: [JsonFormostArrayComponent, JsonFormostGroupComponent, JsonFormostControlComponent, JsonFormostFormComponent]
+  exports: [
+    JsonFormostArrayComponent, 
+    JsonFormostGroupComponent, 
+    JsonFormostControlComponent, 
+    JsonFormostFormComponent]
 })
 export class JsonFormostBootstrap4Module { }

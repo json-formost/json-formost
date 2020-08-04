@@ -8,7 +8,7 @@
   },
   "repository": "https://github.com/json-formost/json-formost",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
     "@angular/core": "^10.0.5"

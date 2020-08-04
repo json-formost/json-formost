@@ -35,6 +35,9 @@
           <select *ngIf="!fromArray" [id]="control.name" class="input" [formControlName]="control.name">
             <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
           </select>
+          <select *ngIf="fromArray" [formControl]="control" class="input">
+            <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
+          </select>
   
         </ng-container>
   
@@ -43,7 +46,8 @@
           <div class="field">
             <div class="control">
               <label class="checkbox">
-                <input type="checkbox" [id]="control.name" [formControlName]="control.name">
+                <input *ngIf="!fromArray" type="checkbox" [id]="control.name" [formControlName]="control.name" />
+                <input *ngIf="fromArray" type="checkbox" [formControl]="control" />
                 {{ control.title || control.name }}
                 <span class="icon is-small is-danger" title="{{ control.title || control.name }} is required">
                   <i class="fas fa-asterisk" *ngIf="control.hasError('required')"></i>
