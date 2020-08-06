@@ -47,10 +47,15 @@
                             <form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
                                 <formost-form [schema]="schema" formControlName="content"></formost-form>
 
-                                <button type="submit" href="#" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                         <div class="tab-pane" [class.active]="tab=='schema'">
+                            <form [formGroup]="schemaForm" (ngSubmit)="onSchemaSubmit()">
+                                <formost-form [schema]="schemaSchema" formControlName="schema"></formost-form>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                             <pre><code>{{ schema | json }}</code></pre>
                         </div>
                         <div class="tab-pane" [class.active]="tab=='data'">

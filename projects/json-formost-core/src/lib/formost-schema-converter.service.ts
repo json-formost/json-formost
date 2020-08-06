@@ -20,7 +20,7 @@ export class SchemaConverterService {
     if (formItems instanceof FormGroup)
       return formItems;
     else {
-      return new FormGroup({ formost: formItems });
+      return new FormGroup({}, { formost: formItems });
     }
   }
 
@@ -40,8 +40,8 @@ export class SchemaConverterService {
   private getFormItems(schema: FormostJsonSchema7 | string, refId = "#"): FormostAbstractControl {
     const schemaObj: FormostJsonSchema7 = typeof schema === 'string' ? JSON.parse(schema) : schema;
 
-    if (!schemaObj) { console.warn('NO-OBJECT', schemaObj); return {} as FormostAbstractControl; }
-    if (!schemaObj.type) { console.warn('NO-TYPE', schemaObj); return {} as FormostAbstractControl; }
+    if (!schemaObj) { this.logMsg('NO-OBJECT', "warn", schemaObj); return {} as FormostAbstractControl; }
+    if (!schemaObj.type) { this.logMsg('NO-TYPE', "warn", schemaObj); return {} as FormostAbstractControl; }
 
     let formItems: FormostAbstractControl;
     switch (schemaObj.type) {
@@ -67,8 +67,7 @@ export class SchemaConverterService {
 
   private getFormGroup(obj: FormostJsonSchema7, refId: string): FormGroup {
     const reqArr: Array<string> = obj.required || [];
-    const item = new FormGroup({});
-    item.populate(obj);
+    const item = new FormGroup(obj, {});
     if (refId) { item.refid = refId; }
     for (const prop in obj.properties) {
       if (obj.properties.hasOwnProperty(prop)) {
@@ -85,8 +84,7 @@ export class SchemaConverterService {
   }
 
   private getFormArray(obj: FormostJsonSchema7, refId: string): FormArray {
-    const item = new FormArray([], undefined, undefined, this);
-    item.populate(obj);
+    const item = new FormArray(obj, [], this);
     if (refId) { item.refid = refId; }
     const allowedTypesArray = Array.isArray(obj.items)
       ? obj.items as FormostJsonSchema7[]
@@ -102,4 +100,17 @@ export class SchemaConverterService {
     return item;
   }
 
+  private logMsg(msg: string, level: "error" | "warn" | "info" = "info", data?: any) {
+    switch (level) {
+      case "error":
+        console.error(msg, data);
+        break;
+      case "warn":
+        console.warn(msg, data);
+        break;
+      default:
+        console.info(msg, data);
+        break;
+    }
+  }
 }

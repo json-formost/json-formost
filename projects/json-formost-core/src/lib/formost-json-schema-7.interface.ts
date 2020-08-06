@@ -1,7 +1,20 @@
 import { JSONSchema7 } from 'json-schema';
 
-export interface FormostJsonSchema7 extends JSONSchema7 {
+export interface FormostJsonSchema7Layout {
+    row?: number;
+    col?: number;
+    colSize?: number;
+}
 
+export interface FormostJsonSchema7UiHint {
+    enumStyle?: "dropdown" | "listbox" | "options"  | "optionsList"| "optionsGrid";
+    cssClass?: string;
+    rows?: number;
+}
+
+export interface FormostJsonSchema7 extends JSONSchema7 {
+    $layout?: FormostJsonSchema7Layout;
+    $uiHint?: FormostJsonSchema7UiHint;
 }
 
 /**

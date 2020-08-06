@@ -8,12 +8,12 @@ export class FormArray<T = any, E extends object = any> extends NgFormArray impl
     readonly value: T[];
 
     constructor(
+        source,
         public controls: AbstractControl[],
-        validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions,
-        asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[],
         private fbs?: SchemaConverterService
     ) {
-        super(controls, validatorOrOpts, asyncValidator);
+        super(controls, undefined, undefined);
+        populateInterfaceProperties(this, source, ['uniqueItems', 'contains', 'additionalItems', 'minItems', 'maxItems']);
     }
 
     // From Interface
@@ -29,10 +29,6 @@ export class FormArray<T = any, E extends object = any> extends NgFormArray impl
     additionalItems: FormostAbstractControl | boolean = false;
     minItems?: number;
     maxItems?: number;
-
-    populate(source: object) {
-        populateInterfaceProperties(this, source, ['uniqueItems', 'contains', 'additionalItems', 'minItems', 'maxItems']);
-    }
 
     getControlType(): "control" | "group" | "array" {
         return 'array';

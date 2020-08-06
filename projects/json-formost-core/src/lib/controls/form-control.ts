@@ -26,8 +26,9 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
         if (this.type == 'string' && this.enum) { return 'dropdown'; }
         if (this.type == 'boolean') { return 'checkbox'; }
         // if (this.type == 'string' && (this.minLength > 99 || this.maxLength > 99)) { return 'bigtext'; }
-        if (this.type == 'string' && this.contentMediaType == 'text/html') { return 'richtext'; }
-        if (this.type == 'string' && this.contentMediaType == 'text/markdown') { return 'markdown'; }
+        if (this.type == 'string' && this.contentMediaType && this.contentMediaType.startsWith('text/')) { return 'textarea'; }
+        // if (this.type == 'string' && this.contentMediaType == 'text/html') { return 'richtext'; }
+        // if (this.type == 'string' && this.contentMediaType == 'text/markdown') { return 'markdown'; }
         return 'input';
     };
     get inputType(): string {
@@ -35,11 +36,12 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
             if (this.type == 'number' || this.type == 'integer') { return 'number'; }
             if (this.type == 'string' && this.format == 'date-time') { return 'datetime-local'; }
             if (this.type == 'string' && this.format == 'date') { return 'date'; }
-            if (this.type == 'string' && this.format == 'time') { return 'number'; }
+            if (this.type == 'string' && this.format == 'time') { return 'time'; }
             if (this.type == 'string' && this.format == 'email') { return 'email'; }
             if (this.type == 'string' && this.format == 'uri') { return 'url'; }
             if (this.type == 'string') { return 'text'; }
         }
+        if (this.uiType == 'textarea') { return this.contentMediaType.substr(5); }
         return null;
     }
 
@@ -62,10 +64,6 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
     exclusiveMinimum?: number = null;
     maximum?: number = null;
     exclusiveMaximum?: number = null;
-
-    populate(source: object) {
-        populateInterfaceProperties(this, source, ['type', 'required', 'enum', 'minLength', 'maxLength', 'pattern', 'format', 'contentEncoding', 'contentMediaType', 'multipleOf', 'minimum', 'exclusiveMinimum', 'maximum', 'exclusiveMaximum']);
-    }
 
     getControlType(): 'control' | 'group' | 'array' {
         return 'control';

@@ -7,7 +7,5 @@ export interface FormostAbstractControl extends AbstractControl {
     description?: string;
     help?: string;
 
-    populate(source: object);
-
     getControlType(): 'control' | 'group' | 'array';
 }

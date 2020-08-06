@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { SchemaConverterService, FormostJsonSchema7 } from 'json-formost-core';
+import { JsonFormostFormComponent } from 'json-formost-bootstrap4';
 
 @Component({
   selector: 'app-bootstrap4-demo',
@@ -8,29 +10,40 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class Bootstrap4DemoComponent implements OnInit {
   demoForm: FormGroup;
+  schemaForm: FormGroup;
   tab = 'form';
+  @ViewChild(JsonFormostFormComponent) demoSubForm: JsonFormostFormComponent;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private schemaSvc: SchemaConverterService) { }
 
   ngOnInit(): void {
     this.loadDemoForm();
+    this.loadSchemaForm();
   }
 
-  loadDemoForm() {
-    const itemData: any = {
-      createdAt: new Date().toISOString(),
-      createdBy: 'demo@example.com'
-    };
+  loadDemoForm(data?: any) {
+    if (!data) {
+      data = {
+        createdAt: new Date().toISOString(),
+        createdBy: 'demo@example.com'
+      };
+    }
 
     this.demoForm = this.fb.group({
-      id: [itemData.id],
+      id: [data.id],
       content: [null], //  this.fbsvc.getFormostAbstractControl(this.schema),
       // content: [itemData.content],
       // contentObject: [itemData.content ? JSON.parse(itemData.content) : null],
-      createdBy: [itemData.createdBy],
-      createdAt: [itemData.createdAt],
+      createdBy: [data.createdBy],
+      createdAt: [data.createdAt],
     });
     // console.info('loadItemForm::itemForm...', this.demoForm);
+  }
+
+  loadSchemaForm() {
+    this.schemaForm = this.fb.group({
+      schema: [{ skema: JSON.stringify(this.schema, null, 2) }]
+    });
   }
 
   showTab(e, tab) {
@@ -52,7 +65,15 @@ export class Bootstrap4DemoComponent implements OnInit {
     console.info('DATA', this.demoForm.value);
   }
 
-  schema = {
+  onSchemaSubmit() {
+    console.info('DATA', this.schemaForm.value);
+    //this.demoForm.
+    this.demoSubForm.formostForm = this.schemaSvc.getFormostForm(this.schemaForm.value.schema.skema);
+    this.loadDemoForm();
+    this.tab = 'form';
+  }
+
+  schema: FormostJsonSchema7 = {
     "title": "People",
     "type": "object",
     "properties": {
@@ -83,7 +104,6 @@ export class Bootstrap4DemoComponent implements OnInit {
       "favorites": {
         "type": "array",
         "items": {
-          "name": "addressType",
           "type": "object",
           "properties": {
             "name": {
@@ -135,5 +155,19 @@ export class Bootstrap4DemoComponent implements OnInit {
       "occupation",
       "nationality"
     ]
+  };
+
+  schemaSchema: FormostJsonSchema7 = {
+    "title": "Schema Schema",
+    "type": "object",
+    "properties": {
+      "skema": {
+        "type": "string",
+        "title": "Schema",
+        "description": "Update this schema then switch back to the Form tab to see results.",
+        "contentMediaType": "text/plain",
+        "minLength": 100
+      }
+    }
   };
 }

@@ -63,22 +63,6 @@ export class BulmaDemoComponent implements OnInit {
       "vegetarian": {
         "type": "boolean",
         "title": "Are you a vegetarian?"
-      }
-    }
-  };
-
-  schemaObject1 = {
-    "title": "People",
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string",
-        "minLength": 3,
-        "description": "Please enter your name"
-      },
-      "vegetarian": {
-        "type": "boolean",
-        "title": "Are you a vegetarian?"
       },
       "birthDate": {
         "type": "string",

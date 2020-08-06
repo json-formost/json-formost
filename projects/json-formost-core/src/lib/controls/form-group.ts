@@ -6,10 +6,12 @@ export class FormGroup<T extends object = any> extends NgFormGroup implements Fo
     readonly value: T;
 
     constructor(
-        public controls: { [key: string]: AbstractControl },
+        source,
+        controls: { [key: string]: AbstractControl }
     ) {
         //super(controls, validatorOrOpts, asyncValidator);
         super(controls);
+        populateInterfaceProperties(this, source, []);
     }
 
     // from interface
@@ -18,10 +20,6 @@ export class FormGroup<T extends object = any> extends NgFormGroup implements Fo
     title?: string;
     description?: string;
     help?: string;
-
-    populate(source: object) {
-        populateInterfaceProperties(this, source, []);
-    }
 
     getControlType(): "control" | "group" | "array" {
         return 'group';
