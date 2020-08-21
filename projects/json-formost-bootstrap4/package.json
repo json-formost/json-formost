@@ -11,8 +11,7 @@
   "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5",
-    "@json-formost/core": "0.0.3"
+    "@angular/core": "^10.0.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { SchemaConverterService, FormostJsonSchema7 } from 'json-formost-core';
-import { JsonFormostFormComponent } from 'json-formost-bootstrap4';
+// import { SchemaConverterService, FormostJsonSchema7 } from '../../../../../common/formost-core/public-api';
+import { JsonFormostFormComponent, SchemaConverterService, FormostJsonSchema7 } from 'json-formost-bootstrap4';
 
 @Component({
   selector: 'app-bootstrap4-demo',
@@ -77,10 +77,19 @@ export class Bootstrap4DemoComponent implements OnInit {
     "title": "People",
     "type": "object",
     "properties": {
-      "name": {
+      "fname": {
+        "title": "First Name",
         "type": "string",
         "minLength": 3,
-        "description": "Please enter your name"
+        "description": "Please enter your first name",
+        "$layout": {row: 99}
+      },
+      "lname": {
+        "title": "Last Name",
+        "type": "string",
+        "minLength": 3,
+        "description": "Please enter your last name",
+        "$layout": {row: 75}
       },
       "vegetarian": {
         "type": "boolean",

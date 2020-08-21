@@ -8,12 +8,6 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/json-formost-core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/json-formost-core/tsconfig.spec.json"
-    },
-    {
       "path": "./projects/json-formost-demo/tsconfig.app.json"
     },
     {

@@ -16,10 +16,6 @@
       "dom"
     ],
     "paths": {
-      "json-formost-core": [
-        "dist/json-formost-core/json-formost-core",
-        "dist/json-formost-core"
-      ],
       "json-formost-bulma": [
         "dist/json-formost-bulma/json-formost-bulma",
         "dist/json-formost-bulma"
@@ -29,5 +25,8 @@
         "dist/json-formost-bootstrap4"
       ]
     }
-  }
+  },
+  "references": [
+      { "path": "common/formost-core/public-api" }
+  ]
 }

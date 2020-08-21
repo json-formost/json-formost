@@ -3,46 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "JsonFormostCore": {
-      "projectType": "library",
-      "root": "projects/json-formost-core",
-      "sourceRoot": "projects/json-formost-core/src",
-      "prefix": "jfm",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/json-formost-core/tsconfig.lib.json",
-            "project": "projects/json-formost-core/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/json-formost-core/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/json-formost-core/src/test.ts",
-            "tsConfig": "projects/json-formost-core/tsconfig.spec.json",
-            "karmaConfig": "projects/json-formost-core/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/json-formost-core/tsconfig.lib.json",
-              "projects/json-formost-core/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "json-formost-demo": {
       "projectType": "application",
       "schematics": {
@@ -244,5 +204,5 @@
         }
       }
     }},
-  "defaultProject": "JsonFormostCore"
+  "defaultProject": "json-formost-demo"
 }
