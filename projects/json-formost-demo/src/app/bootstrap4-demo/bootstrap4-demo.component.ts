@@ -82,14 +82,14 @@ export class Bootstrap4DemoComponent implements OnInit {
         "type": "string",
         "minLength": 3,
         "description": "Please enter your first name",
-        "$layout": {row: 99}
+        "$layout": {row: 1, col: 2}
       },
       "lname": {
         "title": "Last Name",
         "type": "string",
         "minLength": 3,
         "description": "Please enter your last name",
-        "$layout": {row: 75}
+        "$layout": {row: 1, col: 1}
       },
       "vegetarian": {
         "type": "boolean",

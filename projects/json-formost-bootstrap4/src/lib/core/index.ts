@@ -9,3 +9,4 @@ export * from './formost-abstract-control.interface';
 export * from './controls/form-group';
 export * from './controls/form-array';
 export * from './controls/form-control';
+export * from './rowify.pipe';

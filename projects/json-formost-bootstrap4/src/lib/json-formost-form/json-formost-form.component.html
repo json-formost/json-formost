@@ -1,38 +1,14 @@
 <div>
-    <!-- <form (ngSubmit)="onSubmit()" [formGroup]="form"> -->
-
-    <ng-container *ngFor="let item of formostForm.controls | keyvalue: orderer">
-        <div class="row">
-            <div class="col"> 
-                <formost-form-group *ngIf="item.value.getControlType()=='group'" 
-                    [group]="item.value"
-                    [form]="formostForm"></formost-form-group>
-                <formost-form-array *ngIf="item.value.getControlType()=='array'" 
-                    [array]="item.value" 
-                    [form]="formostForm">
-                </formost-form-array>
-                <formost-form-control *ngIf="item.value.getControlType()=='control'" 
-                    [control]="item.value"
-                    [form]="formostForm">
-                </formost-form-control>
-            </div>
+    <div class="row" *ngFor="let row of formostForm.controls | rowify ">
+        <div class="col" *ngFor="let item of row">
+            <formost-form-group *ngIf="item.getControlType()=='group'" [group]="item" [form]="formostForm">
+            </formost-form-group>
+            <formost-form-array *ngIf="item.getControlType()=='array'" [array]="item" [form]="formostForm">
+            </formost-form-array>
+            <formost-form-control *ngIf="item.getControlType()=='control'" [control]="item" [form]="formostForm">
+            </formost-form-control>
         </div>
-        <!-- <jfo-json-form-group *ngIf="formItem.isFormSection()" [group]="formItem" [form]="form.controls[formItem.name]">
-        </app-json-form-group>
-        <jfo-json-form-array *ngIf="formItem.isFormList()" [array]="formItem" [form]="form">
-        </app-json-form-array>
-        <jfo-json-form-question *ngIf="formItem.isFormField()" [question]="formItem" [form]="form">
-        </app-json-form-question> -->
-    </ng-container>
-<!-- 
-    <div class="form-row">
-        <button type="submit" [disabled]="!formostForm.valid">Save</button>
-    </div> -->
-    <!-- </form> -->
-
-    <!-- <div *ngIf="payLoad" class="form-row">
-        <strong>Saved the following values</strong><br>{{payLoad}}
-    </div> -->
+    </div>
 </div>
 <!-- <hr>
 <pre><code>{{ formostForm.value | json }}</code></pre>

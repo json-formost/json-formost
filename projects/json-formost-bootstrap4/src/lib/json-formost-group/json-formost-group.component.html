@@ -6,16 +6,16 @@
         <p *ngIf="group.description" class="help">{{ group.description }}</p>
     </div>
     <div class="col">
-        <ng-container *ngFor="let item of group.controls | keyvalue: originalOrder">
+        <ng-container *ngFor="let row of group.controls | rowify">
             <div class="row">
-                <div class="col">
-                    <formost-form-group *ngIf="item.value.getControlType()=='group'" [group]="item.value"
+                <div class="col" *ngFor="let item of row">
+                    <formost-form-group *ngIf="item.getControlType()=='group'" [group]="item"
                         [form]="group"></formost-form-group>
-                    <!-- <formost-form-array *ngIf="item.value.getControlType()=='array'" 
-                            [array]="item.value" 
+                    <!-- <formost-form-array *ngIf="item.getControlType()=='array'" 
+                            [array]="item" 
                             [form]="group">
                         </formost-form-array> -->
-                    <formost-form-control *ngIf="item.value.getControlType()=='control'" [control]="item.value"
+                    <formost-form-control *ngIf="item.getControlType()=='control'" [control]="item"
                         [form]="group">
                     </formost-form-control>
                 </div>
