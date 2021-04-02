@@ -6,6 +6,7 @@ import { JsonFormostGroupComponent } from './json-formost-group/json-formost-gro
 import { JsonFormostControlComponent } from './json-formost-control/json-formost-control.component';
 import { JsonFormostFormComponent } from './json-formost-form/json-formost-form.component';
 import { RowifyPipe } from './core/rowify.pipe';
+import { ControlifyPipe } from './core/controlify.pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { RowifyPipe } from './core/rowify.pipe';
     JsonFormostGroupComponent, 
     JsonFormostControlComponent, 
     JsonFormostFormComponent,
-    RowifyPipe
+    RowifyPipe,
+    ControlifyPipe,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { RowifyPipe } from './core/rowify.pipe';
     JsonFormostGroupComponent, 
     JsonFormostControlComponent, 
     JsonFormostFormComponent,
-    RowifyPipe
+    RowifyPipe,
+    ControlifyPipe,
   ]
 })
 export class JsonFormostBootstrap4Module { }

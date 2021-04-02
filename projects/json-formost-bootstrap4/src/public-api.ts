@@ -10,6 +10,7 @@ export * from './lib/core/controls/form-group';
 export * from './lib/core/controls/form-array';
 export * from './lib/core/controls/form-control';
 export * from './lib/core/rowify.pipe';
+export * from './lib/core/controlify.pipe';
 //export * from './lib/core/util';
 
 // export * from './lib/core';

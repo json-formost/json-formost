@@ -2,12 +2,12 @@ import { JSONSchema7 } from 'json-schema';
 
 export interface FormostJsonSchema7Layout {
     row?: number;
-    col?: number;
-    colSize?: number;
+    col?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+    colSize?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
 export interface FormostJsonSchema7UiHint {
-    enumStyle?: "dropdown" | "listbox" | "options"  | "optionsList"| "optionsGrid";
+    enumStyle?: "dropdown" | "listbox" | "options" | "optionsList" | "optionsGrid";
     cssClass?: string;
     rows?: number;
 }

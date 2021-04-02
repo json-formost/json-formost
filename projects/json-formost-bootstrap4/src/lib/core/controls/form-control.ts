@@ -1,4 +1,4 @@
-import { FormControl as NgFormControl, Validators, ValidatorFn, AbstractControlOptions, AsyncValidatorFn } from '@angular/forms';
+import { FormControl as NgFormControl, Validators, ValidatorFn, AbstractControlOptions, AsyncValidatorFn, FormArray } from '@angular/forms';
 import { FormostAbstractControl } from '../formost-abstract-control.interface';
 import { populateInterfaceProperties } from '../util';
 import { FormostJsonSchema7UiHint, FormostJsonSchema7Layout } from '../formost-json-schema-7.interface';
@@ -26,10 +26,15 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
 
     // Form Control properties
 
-    type: 'string' | 'boolean' | 'number' | 'integer' | null;
+    type: 'string' | 'array' | 'boolean' | 'number' | 'integer' | null;
     required?: boolean;
     get uiType(): string {
-        if (this.type == 'string' && this.enum) { return 'dropdown'; }
+        if (this.type == 'string' && this.enum) {
+            return 'pick-one';
+        }
+        if (this.type == 'array' && this.enum) {
+            return 'pick-many';
+        }
         if (this.type == 'boolean') { return 'checkbox'; }
         // if (this.type == 'string' && (this.minLength > 99 || this.maxLength > 99)) { return 'bigtext'; }
         if (this.type == 'string' && this.contentMediaType && this.contentMediaType.startsWith('text/')) { return 'textarea'; }
@@ -48,10 +53,33 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
             if (this.type == 'string') { return 'text'; }
         }
         if (this.uiType == 'textarea') { return this.contentMediaType.substr(5); }
+        if (this.uiType == 'pick-one') {
+            if (this.$uiHint && this.$uiHint.enumStyle) {
+                switch (this.$uiHint.enumStyle) {
+                    case 'options': return 'radios';
+                    case 'optionsGrid': return 'radioGrid';
+                    case 'optionsList': return 'radioList';
+                    default: return this.$uiHint.enumStyle;
+                }
+            }
+            return 'dropdown'
+        }
+        if (this.uiType == 'pick-many'){
+            if (this.$uiHint && this.$uiHint.enumStyle) {
+                switch (this.$uiHint.enumStyle) {
+                    case 'options': return 'checkboxes';
+                    case 'optionsGrid': return 'checkboxGrid';
+                    case 'optionsList': return 'checkboxList';
+                    default: return this.$uiHint.enumStyle;
+                }
+            }
+            return 'listbox';
+        }
         return null;
     }
 
     enum?: any[];
+    optionsArray?: FormArray;
 
     // type: string
     minLength?: number = null;
@@ -74,7 +102,6 @@ export class FormControl<T = any, E extends object = any> extends NgFormControl 
     // Formost specific
     $layout?: FormostJsonSchema7Layout;
     $uiHint?: FormostJsonSchema7UiHint;
-
 
     getControlType(): 'control' | 'group' | 'array' {
         return 'control';

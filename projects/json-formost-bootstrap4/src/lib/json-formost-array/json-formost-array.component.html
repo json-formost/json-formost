@@ -13,21 +13,24 @@
                 </ng-container>
             </ng-container> -->
 
-            <div class="row" *ngFor="let ctl of array.controls; index as i">
+            <div class="row" *ngFor="let ctl of array.controls; index as i; last as isLast;">
 
                 <div class="col" *ngIf="ctl.getControlType()=='group'" [formGroupName]="i">
                     <formost-form-group [group]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-group>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col" *ngIf="ctl.getControlType()=='array'" [formGroupName]="i">
                     <formost-form-array [array]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-array>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col" *ngIf="ctl.getControlType()=='control'">
                     <formost-form-control [control]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-control>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col-auto">
