@@ -13,21 +13,24 @@
                 </ng-container>
             </ng-container> -->
 
-            <div class="row" *ngFor="let ctl of array.controls; index as i">
+            <div class="row" *ngFor="let ctl of array.controls; index as i; last as isLast; trackBy:trackByFn">
 
                 <div class="col" *ngIf="ctl.getControlType()=='group'" [formGroupName]="i">
                     <formost-form-group [group]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-group>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col" *ngIf="ctl.getControlType()=='array'" [formGroupName]="i">
                     <formost-form-array [array]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-array>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col" *ngIf="ctl.getControlType()=='control'">
                     <formost-form-control [control]="array.controls[i]" [form]="form" [fromArray]="true">
                     </formost-form-control>
+                    <hr *ngIf="!isLast">
                 </div>
 
                 <div class="col-auto">
@@ -43,7 +46,7 @@
         </ng-container>
 
         <div class="field is-grouped" *ngIf="array.itemTypes.length > 1">
-            <p class="control" *ngFor="let typ of array.itemTypes; let i=index">
+            <p class="control" *ngFor="let typ of array.itemTypes; let i=index; trackBy:trackByFn">
                 <button class="btn btn-secondary btn-sm" (click)="addItem(typ)">
                     <span class="icon">
                         <i class="fas fa-plus"></i>

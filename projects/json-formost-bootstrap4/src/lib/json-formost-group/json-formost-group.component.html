@@ -1,14 +1,14 @@
 <div class="row">
-    <div class="col-3">
+    <div class="col-3" *ngIf="!fromArray">
         <label class="label">
             {{ group.title || group.name }}
         </label>
         <p *ngIf="group.description" class="help">{{ group.description }}</p>
     </div>
     <div class="col">
-        <ng-container *ngFor="let row of group.controls | rowify">
+        <ng-container *ngFor="let row of group.controls | rowify; trackBy:trackByFn">
             <div class="row">
-                <div class="col" *ngFor="let item of row">
+                <div class="col" *ngFor="let item of row; trackBy:trackByFn">
                     <formost-form-group *ngIf="item.getControlType()=='group'" [group]="item"
                         [form]="group"></formost-form-group>
                     <!-- <formost-form-array *ngIf="item.getControlType()=='array'" 

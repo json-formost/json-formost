@@ -18,38 +18,63 @@
     <div class="form-group" *ngSwitchCase="'textarea'">
 
       <label [for]="control.name" *ngIf="!fromArray">{{ control.title || control.name }}</label>
-      <textarea *ngIf="!fromArray" [id]="control.name" class="form-control {{ control.inputType }}" 
-        [formControlName]="control.name" aria-describedby="{{control.name}}_help" rows="3" ></textarea>
+      <textarea *ngIf="!fromArray" [id]="control.name" class="form-control {{ control.inputType }}"
+        [formControlName]="control.name" aria-describedby="{{control.name}}_help"
+        [rows]="control.$uiHint?.rows || 3"></textarea>
       <textarea *ngIf="fromArray" class="form-control {{ control.inputType }}" [formControl]="control"
-        aria-describedby="{{control.name}}_help" rows="3" ></textarea>
+        aria-describedby="{{control.name}}_help" [rows]="control.$uiHint?.rows || 3"></textarea>
       <small *ngIf="control.description && !fromArray" id="{{control.name}}_help"
         class="form-text text-muted">{{control.description}}</small>
 
     </div>
 
     <!-- ##########  <select/> ########## -->
-    <div class="form-group" *ngSwitchCase="'dropdown'">
+    <div class="form-group" *ngSwitchCase="'pick-one'">
 
       <label [for]="control.name" *ngIf="!fromArray">{{ control.title || control.name }}</label>
 
-      <select *ngIf="!fromArray" class="form-control" [id]="control.name" aria-describedby="{{control.name}}_help"
-        [formControlName]="control.name">
-        <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
-      </select>
-      <select *ngIf="fromArray" class="form-control" aria-describedby="{{control.name}}_help" [formControl]="control">
-        <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
-      </select>
+      <ng-container [ngSwitch]="control.inputType">
+
+        <ng-container *ngSwitchCase="'dropdown'">
+          <select *ngIf="!fromArray" class="form-control" [id]="control.name" aria-describedby="{{control.name}}_help"
+            [formControlName]="control.name">
+            <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
+          </select>
+          <select *ngIf="fromArray" class="form-control" aria-describedby="{{control.name}}_help"
+            [formControl]="control">
+            <option *ngFor="let opt of control.enum" [value]="opt">{{opt}}</option>
+          </select>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'radios'">
+          <div class="form-check" *ngFor="let opt of control.enum; index as i; trackBy: trackByFn">
+            <input class="form-check-input" id="{{control.name}}_{{opt}}" aria-describedby="{{control.name}}_help"
+            type="radio" [value]="opt" [name]="control.name" [formControlName]="control.name" >
+            <label class="form-check-label" for="{{control.name}}_{{opt}}">
+              {{opt}}
+            </label>
+          </div>
+          <!-- <div class="form-check" *ngFor="let ctl of control.optionsArray.controls; index as i">
+            <input *ngIf="!fromArray" class="form-check-input" id="{{control.name}}_{{i}}" aria-describedby="{{control.name}}_help"
+            type="radio" [formControl]="control.optionsArray.at(i)" >
+            <label class="form-check-label" for="{{control.name}}_{{i}}">
+              {{ctl.value}}
+            </label>
+          </div> -->
+        </ng-container>
+
+      </ng-container>
 
       <small *ngIf="control.description && !fromArray" id="{{control.name}}_help"
         class="form-text text-muted">{{control.description}}</small>
 
     </div>
 
-     <!-- ##########  <input type="checkbox" /> ########## -->
-     <div class="form-check" *ngSwitchCase="'checkbox'">
+    <!-- ##########  <input type="checkbox" /> ########## -->
+    <div class="form-check" *ngSwitchCase="'checkbox'">
 
-      <input *ngIf="!fromArray" class="form-check-input" type="checkbox" value="" [id]="control.name" [formControlName]="control.name"
-        aria-describedby="{{control.name}}_help" />
+      <input *ngIf="!fromArray" class="form-check-input" type="checkbox" value="" [id]="control.name"
+        [formControlName]="control.name" aria-describedby="{{control.name}}_help" />
       <input *ngIf="fromArray" class="form-check-input" type="checkbox" value="" [formControl]="control"
         aria-describedby="{{control.name}}_help" />
       <label class="form-check-label" [for]="control.name">

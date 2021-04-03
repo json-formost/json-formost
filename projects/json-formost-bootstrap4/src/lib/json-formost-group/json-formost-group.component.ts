@@ -20,4 +20,8 @@ export class JsonFormostGroupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  trackByFn(index: any, item: any) {
+    return index;
+  }
+
 }

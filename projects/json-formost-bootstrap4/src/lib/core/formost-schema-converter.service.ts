@@ -59,10 +59,19 @@ export class SchemaConverterService {
   }
 
   private getFormControl(obj: FormostJsonSchema7, refId: string): FormControl {
-    const formCtl = new FormControl(obj);
+    const item = new FormControl(obj);
     // formCtl.populate(obj);
-    if (refId) { formCtl.refid = refId; }
-    return formCtl;
+    if (refId) { item.refid = refId; }
+    if (obj.enum && obj.enum.length) {
+      item.optionsArray = new FormArray(obj, [], this);
+      for (let i = 0; i < obj.enum.length; i++) {
+        let optVal = obj.enum[i];
+        let optCtl = new FormControl(obj, optVal);
+        item.optionsArray.push(optCtl);
+      }
+      console.info(`optionsArray for ${refId}`, item.optionsArray);
+    }
+    return item;
   }
 
   private getFormGroup(obj: FormostJsonSchema7, refId: string): FormGroup {

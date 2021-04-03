@@ -7,7 +7,7 @@ import { FormGroup, FormostJsonSchema7, SchemaConverterService, keyValueSorters 
 @Component({
   selector: 'formost-form',
   templateUrl: './json-formost-form.component.html',
-  styleUrls: ['./json-formost-form.component.css'],
+  styleUrls: ['./json-formost-form.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -79,5 +79,8 @@ export class JsonFormostFormComponent implements OnInit, ControlValueAccessor, V
   // registerOnValidatorChange?(fn: () => void): void {
   //   throw new Error("Method not implemented.");
   // }
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 
 }

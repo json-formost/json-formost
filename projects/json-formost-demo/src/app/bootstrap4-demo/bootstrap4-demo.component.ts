@@ -31,7 +31,18 @@ export class Bootstrap4DemoComponent implements OnInit {
 
     this.demoForm = this.fb.group({
       id: [data.id],
-      content: [null], //  this.fbsvc.getFormostAbstractControl(this.schema),
+      content: {
+        fname: "John",
+        lname: "Smith",
+        vegetarian: true,
+        birthDate: "08/20/2008",
+        nationality: "US",
+        colorChoice: "green",
+        favorites: [],
+        personalData: { age: null, height: null, drivingSkill: null },
+        occupation: "lawyer",
+        postalCode: null
+      }, //  this.fbsvc.getFormostAbstractControl(this.schema),
       // content: [itemData.content],
       // contentObject: [itemData.content ? JSON.parse(itemData.content) : null],
       createdBy: [data.createdBy],
@@ -82,14 +93,14 @@ export class Bootstrap4DemoComponent implements OnInit {
         "type": "string",
         "minLength": 3,
         "description": "Please enter your first name",
-        "$layout": {row: 1, col: 2}
+        "$layout": { row: 1, col: 2 }
       },
       "lname": {
         "title": "Last Name",
         "type": "string",
         "minLength": 3,
         "description": "Please enter your last name",
-        "$layout": {row: 1, col: 1}
+        "$layout": { row: 1, col: 1 }
       },
       "vegetarian": {
         "type": "boolean",
@@ -110,6 +121,24 @@ export class Bootstrap4DemoComponent implements OnInit {
           "Other"
         ]
       },
+      "colorChoice": {
+        "type": "string",
+        "enum": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "$uiHint": { enumStyle: 'options' }
+      },
+      // "colorChoice2": {
+      //   "type": "array",
+      //   "enum": [
+      //     "red",
+      //     "green",
+      //     "blue"
+      //   ],
+      //   "$uiHint": { enumStyle: 'options' }
+      // },
       "favorites": {
         "type": "array",
         "items": {

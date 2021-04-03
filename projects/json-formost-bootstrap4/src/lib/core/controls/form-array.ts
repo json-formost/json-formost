@@ -13,7 +13,8 @@ export class FormArray<T = any, E extends object = any> extends NgFormArray impl
         private fbs?: SchemaConverterService
     ) {
         super(controls, undefined, undefined);
-        populateInterfaceProperties(this, source, ['uniqueItems', 'contains', 'additionalItems', 'minItems', 'maxItems']);
+        populateInterfaceProperties(this, source, [
+            'uniqueItems', 'contains', 'additionalItems', 'minItems', 'maxItems']);
     }
 
     // From Interface
