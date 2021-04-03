@@ -1,6 +1,6 @@
 <div>
-    <div class="row" *ngFor="let row of formostForm.controls | rowify ">
-        <div class="col" *ngFor="let item of row; trackBy:trackByFn">
+    <div class="row" *ngFor="let row of formostForm.controls | rowify; let r=index; trackBy:trackByFn">
+        <div class="col" *ngFor="let item of row; let i=index; trackBy:trackByFn">
             <formost-form-group *ngIf="item.getControlType()=='group'" [group]="item" [form]="formostForm">
             </formost-form-group>
             <formost-form-array *ngIf="item.getControlType()=='array'" [array]="item" [form]="formostForm">

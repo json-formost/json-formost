@@ -38,4 +38,7 @@ export class JsonFormostArrayComponent implements OnInit {
     this.array.removeAt(idx);
   }
 
+  trackByFn(index, value){
+    return index;
+  }
 }
